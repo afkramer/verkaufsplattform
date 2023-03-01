@@ -2,6 +2,8 @@ package verkaufsplattform;
 
 public class SalesProgram {
 	
+	private Customer[] customers;
+	private Product[] products;
 	private Customer customer;
 	
 	public void run() {
@@ -37,6 +39,22 @@ public class SalesProgram {
 	public void endSession(Customer customer) {
         Gui.endSession();
         Gui.farewellCustomer(customer);
+	}
+	
+	public Customer[] getCustomers() {
+		return this.customers;
+	}
+	
+	public void setCustomers(Customer[] customers) {
+		this.customers = customers;
+	}
+	
+	public Product[] getProducts() {
+		return this.products;
+	}
+	
+	public void setProducts(Product[] products) {
+		this.products = products;
 	}
 	
 }
