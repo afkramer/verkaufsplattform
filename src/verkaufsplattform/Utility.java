@@ -6,6 +6,9 @@ public final class Utility {
 	private static Customer[] customers;
 	private static Product[] products;
 	private static int customerNumberLength = 6;
+	public static final String LOGIN_FLAG = "1";
+	public static final String REGISTER_FLAG = "2";
+	public static final String QUIT_FLAG = "q";
 	
 	private Utility() {}
 	
@@ -36,7 +39,7 @@ public final class Utility {
 		Address address3 = new Address(170, "Cedar Street", "Corning", "NY", "14830");
 		Customer customer3 = new Customer("Amelia", "Cueva", address3);
 		
-		createCustomerNumbers(customer1, customer2, customer3);
+		assignCustomerNumbers(customer1, customer2, customer3);
 	}
 	
 	
@@ -44,7 +47,7 @@ public final class Utility {
 	 * 
 	 * @param customers		vararg to save a customer number to as many customers as necessary
 	 */
-	private static void createCustomerNumbers(Customer... customersInput) {
+	private static void assignCustomerNumbers(Customer... customersInput) {
 		customers = new Customer[customersInput.length];
 		for(int i = 0; i < customersInput.length; i++) {
 			customers[i] = customersInput[i];
@@ -118,7 +121,7 @@ public final class Utility {
         return null;
     }
     
-    public static Customer register(){
+    public static void register(){
         int customerNumber = createNewCustomerNumber(customerNumberLength);
         String firstName = Gui.getCustomerFirstName();
         String lastName = Gui.getCustomerLastName();
@@ -132,10 +135,8 @@ public final class Utility {
         addCustomer(newCustomer);
         
         Gui.showRegistrationResults(newCustomer);
-        return newCustomer;
     }
 	
-
 	
 	/*
 	 * Returns the customer data for a given customer number
@@ -160,6 +161,11 @@ public final class Utility {
         newCustomers[newCustomers.length - 1] = customer;
         customers = newCustomers;
     }
+	
+	public static Customer quit() {
+		Gui.showQuit();
+		return null;
+	}
 	
 	public static void showAvailableProducts() {
 		Gui.showProductsIntroduction();

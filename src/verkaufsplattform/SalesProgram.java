@@ -7,17 +7,27 @@ public class SalesProgram {
 	public void run() {
 		Utility.initData();
 		Gui.showWelcomeScreen();
-		customer = Gui.loginOrRegister();
-		
-		if (customer != null) {
-			Utility.showAvailableProducts();
-			Product product = Gui.getDesiredProduct();
-			product.setDesiredQuantity(Gui.getDesiredQuantity(product));
-			product.calculateTotal();
-			product.calculateVAT();
-			sellItem(customer, product);
-			endSession(customer);
+		String customerInput;
+		while (true) {
+			customerInput = Gui.getLoginRegisterOrQuit();
+			
+			if (customerInput.equals(Utility.LOGIN_FLAG)) {
+				customer = Utility.login();
+				if (customer == null) {
+					Gui.showQuit();
+					break;
+				} else {
+					Gui.showMainMenu(customer);
+				}
+			} else if (customerInput.equals(Utility.REGISTER_FLAG)) {
+				Utility.register();
+			} else if (customerInput.equals(Utility.QUIT_FLAG)) {
+				Gui.showQuit();
+			} else {
+				Gui.showInvalidInput();
+			}
 		}
+		
 	}
 	
 	public void sellItem(Customer customer, Product product){

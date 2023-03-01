@@ -1,4 +1,6 @@
 package verkaufsplattform;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public final class Gui {
@@ -35,28 +37,33 @@ public final class Gui {
     }
     
     /**
-     * Method to determine whether the customer wants to register or login
-     * @return	1 to login, 2 to register
+     * Method to determine whether the customer wants to register, login or quit
+     * @return	1 to login, 2 to register, Q or q to quit
      */
-    public static Customer loginOrRegister() {
+    public static String getLoginRegisterOrQuit() {
         String customerInput;
+        ArrayList<String> validInputs = new ArrayList<String>(
+        	      Arrays.asList(Utility.LOGIN_FLAG, Utility.REGISTER_FLAG, Utility.QUIT_FLAG));
+        
     	while (true) {
             System.out.print(PURPLE_TEXT);
-            System.out.println("\n\nEnter 1 to login or 2 to register:");
+            System.out.println("\n\nEnter 1 to login, 2 to register and Q to quit:");
             System.out.print(ANSCI_RESET);
 
             customerInput = sc.nextLine();
 
-            if (customerInput.equals("1")){
-                return Utility.login();
-            } else if(customerInput.equals("2")) {
-                return Utility.register();
+            if (validInputs.contains(customerInput.toLowerCase())){
+                return customerInput.toLowerCase();
             } else {
-                System.out.print(RED_TEXT);
-                System.out.println("\n\nInvalid input! Please try again!");
-                System.out.print(ANSCI_RESET);
+                showInvalidInput();
             }
         }
+    }
+    
+    public static void showInvalidInput() {
+    	System.out.print(RED_TEXT);
+        System.out.println("\n\nInvalid input! Please try again!");
+        System.out.print(ANSCI_RESET);
     }
     
     public static void showPossibleCustomerNumbers(Customer[] customers) {
@@ -100,13 +107,14 @@ public final class Gui {
     	System.out.println("\n\nSorry, you have been blocked for too many tries. Good bye.\n\n");
     }
     
-    public static void showMainMenu() {
+    public static void showMainMenu(Customer customer) {
     	while(true) {
     		System.out.print(PURPLE_TEXT);
         	System.out.println("\n\nPlease select an option:");
-        	System.out.println("1) Show available products");
-        	System.out.println("2) Change your data");
-        	System.out.println("3) Logout");
+        	System.out.println("1) Change your data");
+        	System.out.println("2) Show available products");
+        	System.out.println("3) Purchase a product");
+        	System.out.println("4) Logout");
         	System.out.println(ANSCI_RESET);
         	try {
         		
@@ -323,5 +331,11 @@ public final class Gui {
         System.out.println("**");
         System.out.println("***************************************************\n\n");
         System.out.print(ANSCI_RESET);
+    }
+    
+    public static void showQuit() {
+    	System.out.print(PURPLE_TEXT);
+    	System.out.println("\n\nPlease come again.");
+    	System.out.print(ANSCI_RESET);
     }
 }
