@@ -1,17 +1,19 @@
 package verkaufsplattform;
 import java.util.Date;
 
-public class Gui {
-	public final String CYAN_TEXT = "\u001B[36m";
-    public final String GREEN_TEXT = "\u001B[32m";
-    public final String YELLOW_TEXT = "\u001B[33m";
-    public final String PURPLE_TEXT = "\u001B[35m";
-    public final String BLUE_TEXT = "\u001B[34m";
-    public final String RED_TEXT = "\u001B[31m";
-    public final String ANSCI_RESET = "\u001B[0m";
-    public final java.util.Scanner sc = new java.util.Scanner(System.in);
+public final class Gui {
+	public static final String CYAN_TEXT = "\u001B[36m";
+    public static final String GREEN_TEXT = "\u001B[32m";
+    public static final String YELLOW_TEXT = "\u001B[33m";
+    public static final String PURPLE_TEXT = "\u001B[35m";
+    public static final String BLUE_TEXT = "\u001B[34m";
+    public static final String RED_TEXT = "\u001B[31m";
+    public static final String ANSCI_RESET = "\u001B[0m";
+    public static final java.util.Scanner sc = new java.util.Scanner(System.in);
     
-    public void showWelcomeScreen() {
+    private Gui() {}
+    
+    public static void showWelcomeScreen() {
         System.out.print(CYAN_TEXT);
         System.out.println("\n\n\n************************************************************");
         System.out.print(GREEN_TEXT);
@@ -36,7 +38,7 @@ public class Gui {
      * Method to determine whether the customer wants to register or login
      * @return	1 to login, 2 to register
      */
-    public int loginOrRegister() {
+    public static Customer loginOrRegister() {
         String customerInput;
     	while (true) {
             System.out.print(PURPLE_TEXT);
@@ -46,9 +48,9 @@ public class Gui {
             customerInput = sc.nextLine();
 
             if (customerInput.equals("1")){
-                return 1;
+                return Utility.login();
             } else if(customerInput.equals("2")) {
-                return 2;
+                return Utility.register();
             } else {
                 System.out.print(RED_TEXT);
                 System.out.println("\n\nInvalid input! Please try again!");
@@ -57,7 +59,7 @@ public class Gui {
         }
     }
     
-    public void showPossibleCustomerNumbers(Customer[] customers) {
+    public static void showPossibleCustomerNumbers(Customer[] customers) {
     	StringBuilder sb = new StringBuilder();
     	sb.append("\n\nPossible customer numbers: ");
     	for (int i = 0; i < customers.length; i++) {
@@ -67,49 +69,62 @@ public class Gui {
     	System.out.println(sb);
     }
     
-    public int getCustomerNumber() {
-        int customerNumber;
+    public static int getCustomerNumber() {
         while(true) {
             try {
                 System.out.print(CYAN_TEXT);
                 System.out.println("\n\nPlease enter your customer number: ");
                 System.out.print(ANSCI_RESET);
-                customerNumber = Integer.parseInt(sc.nextLine());
-                break;
+                return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException nfe) {
                 System.out.print(RED_TEXT);
                 System.out.println("\nA customer number consists of 5 digits. Please try again.\n");
                 System.out.print(ANSCI_RESET);
             }
         }
-
-        return customerNumber;
     }
     
-    public void greetCustomer(Customer customer) {
+    public static void greetCustomer(Customer customer) {
         System.out.println("\n\nWelcome, customer " + customer.getFirstName() + " " + customer.getLastName());
         System.out.println("\n\nPlease press <Enter> to continue.");
         sc.nextLine();
     }
     
-    public void showTriesLeft(int tries) {
+    public static void showTriesLeft(int tries) {
     	System.out.print(RED_TEXT);
         System.out.print("\n\nThat is not a known customer number. Remaining attempts: " + (2 - tries));
         System.out.println(ANSCI_RESET);
     }
     
-    public void showBlocked() {
+    public static void showBlocked() {
     	System.out.println("\n\nSorry, you have been blocked for too many tries. Good bye.\n\n");
     }
     
-    public String getCustomerFirstName() {
+    public static void showMainMenu() {
+    	while(true) {
+    		System.out.print(PURPLE_TEXT);
+        	System.out.println("\n\nPlease select an option:");
+        	System.out.println("1) Show available products");
+        	System.out.println("2) Change your data");
+        	System.out.println("3) Logout");
+        	System.out.println(ANSCI_RESET);
+        	try {
+        		
+        	} catch (NumberFormatException nfe) {
+        		
+        	}
+    	}
+    	
+    }
+    
+    public static String getCustomerFirstName() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("First name: ");
     	System.out.print(ANSCI_RESET);
     	return sc.nextLine();
     }
     
-    public String getCustomerLastName() {
+    public static String getCustomerLastName() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("Last name: ");
     	System.out.print(ANSCI_RESET);
@@ -117,42 +132,42 @@ public class Gui {
     }
     
     // TODO: error handling in case the customer enters a string or nothing
-    public String getStreet() {
+    public static String getStreet() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("Street name: ");
     	System.out.print(ANSCI_RESET);
     	return sc.nextLine();
     }
     
-    public int getHouseNumber() {
+    public static int getHouseNumber() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("House number: ");
     	System.out.print(ANSCI_RESET);
     	return Integer.parseInt(sc.nextLine());
     }
     
-    public String getCity() {
+    public static String getCity() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("City: ");
     	System.out.print(ANSCI_RESET);
     	return sc.nextLine();
     }
     
-    public String getState() {
+    public static String getState() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("State: ");
     	System.out.print(ANSCI_RESET);
     	return sc.nextLine();
     }
     
-    public String getZipcode() {
+    public static String getZipcode() {
     	System.out.print(CYAN_TEXT);
     	System.out.println("Zip code: ");
     	System.out.print(ANSCI_RESET);
     	return sc.nextLine();
     }
     
-    public void showRegistrationResults(Customer customer) {
+    public static void showRegistrationResults(Customer customer) {
     	System.out.print(CYAN_TEXT);
         System.out.println("\n\nThanks for registering, " + customer.getFirstName() + "! Your customer number is: " + customer.getCustomerNumber() + "\n\n");
         System.out.println("Please press <Enter> to continue.");
@@ -160,7 +175,7 @@ public class Gui {
         sc.nextLine();
     }
     
-    public void showProductsIntroduction() {
+    public static void showProductsIntroduction() {
     	System.out.print(PURPLE_TEXT);
     	System.out.println("\n\n\n***************************************************");
     	System.out.println("**  ");
@@ -169,7 +184,7 @@ public class Gui {
     }
     
     // Change how the description is shown -> now it is really long
-    public void showAvailableProduct(int index, Product product) {
+    public static void showAvailableProduct(int index, Product product) {
     	System.out.print(PURPLE_TEXT);
 		System.out.println("\n--------------------------------------------");
 		System.out.println("**  ");
@@ -183,25 +198,26 @@ public class Gui {
 		System.out.print(ANSCI_RESET);
     }
     
-    public void showProductsEnd() {
+    public static void showProductsEnd() {
     	System.out.print(PURPLE_TEXT);
     	System.out.println("\n***************************************************\n\n\n");
     	System.out.print(ANSCI_RESET);
     }
     
-    public int getDesiredProduct(int availableProducts) {
+    public static Product getDesiredProduct() {
     	System.out.print(BLUE_TEXT);
     	System.out.println("Which product would you like to buy?");
     	System.out.print(ANSCI_RESET);
     	int input;
+    	int productsLength = Utility.getProducts().length;
     	while (true) {
     		try {
     			input = Integer.parseInt(sc.nextLine());
-    			if (input > 0 && input <= availableProducts) {
-    				return input;
+    			if (input > 0 && input <= productsLength) {
+    				return Utility.getProductAt(input - 1);
     			} else {
     				System.out.print(RED_TEXT);
-                    System.out.println("\nPlease enter a number between 1 and " + availableProducts + ".\n\n");
+                    System.out.println("\nPlease enter a number between 1 and " + productsLength + ".\n\n");
                     System.out.print(ANSCI_RESET);
     			}
     			
@@ -214,13 +230,11 @@ public class Gui {
     	
     }
 
-    public int getDesiredQuantity(Product product) {
+    public static int getDesiredQuantity(Product product) {
         System.out.println("\n\n\nHow many of product " + product.getProductName() + " would you like to buy?");
-        int input;
         while (true) {
             try {
-                input = Integer.parseInt(sc.nextLine());
-                return input;
+                return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException nfe){
                 System.out.print(RED_TEXT);
                 System.out.println("\nPlease enter a valid quantity.\n\n");
@@ -229,7 +243,7 @@ public class Gui {
         }
     }
     
-    public void showInvoice(Customer customer, Product product) {
+    public static void showInvoice(Customer customer, Product product) {
     	StringBuilder sb = new StringBuilder();
     	sb.append(String.format("%n%n%s %s%n", customer.getFirstName(), customer.getLastName()));
     	sb.append(String.format("%d %s%n", customer.getAddress().getHouseNumber(), customer.getAddress().getStreet()));
@@ -271,7 +285,7 @@ public class Gui {
     	System.out.print(sb);
     }
     
-    public void addLongTextLines(int desiredLineLength, StringBuilder sb, String longText) {
+    public static void addLongTextLines(int desiredLineLength, StringBuilder sb, String longText) {
     	String[] words = longText.split(" ");
     	int currentWordIndex = 0;
     	String currentWord = "";
@@ -294,12 +308,12 @@ public class Gui {
     	}
     }
     
-    public void endSession () {
+    public static void endSession () {
         System.out.println("Please press <Enter> to end your visit.");
         sc.nextLine();
     }
     
-    public void farewellCustomer(Customer customer){
+    public static void farewellCustomer(Customer customer){
         System.out.print(PURPLE_TEXT);
         System.out.println("\n\n***************************************************");
         System.out.println("**");
