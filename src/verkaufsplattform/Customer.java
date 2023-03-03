@@ -50,4 +50,11 @@ public class Customer {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+	public String customerToJSON() {
+		StringBuilder sb = new StringBuilder();
+		
+		
+		return sb.toString();
+	}
 }
