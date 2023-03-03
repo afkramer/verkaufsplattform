@@ -162,6 +162,22 @@ public final class Utility {
 	}
 	
 	
+	public static Product[] addProduct(Product product, Product[] products) {
+		Product[] newProducts;
+		if (products == null) {
+			newProducts = new Product[1];
+			newProducts[0] = product;
+		} else {
+			newProducts = new Product[products.length + 1];
+			for (int i = 0; i < products.length; i++) {
+				newProducts[i] = products[i];
+			}
+			newProducts[newProducts.length - 1] = product;
+		}
+		return newProducts;
+	}
+	
+	
 	public static Customer quit() {
 		Gui.showQuit();
 		return null;
