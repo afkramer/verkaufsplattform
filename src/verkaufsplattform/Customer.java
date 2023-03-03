@@ -19,6 +19,8 @@ public class Customer {
 		this.address = address;
 	}
 	
+	public Customer() {}
+	
 	public int getCustomerNumber() {
 		return customerNumber;
 	}
@@ -51,10 +53,4 @@ public class Customer {
 		this.address = address;
 	}
 	
-	public String customerToJSON() {
-		StringBuilder sb = new StringBuilder();
-		
-		
-		return sb.toString();
-	}
 }

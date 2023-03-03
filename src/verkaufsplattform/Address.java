@@ -15,6 +15,8 @@ public class Address {
 		this.zipCode = zipCode;
 	}
 	
+	public Address() {}
+	
 	public int getHouseNumber() {
 		return houseNumber;
 	}
@@ -55,14 +57,5 @@ public class Address {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	
-	public String addressToJSON() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		sb.append(String.format("\"houseNumber\": %d, ", this.houseNumber) );
-		sb.append(String.format("\"street\": \"%s\", ", street));
-		sb.append("}");
-		
-		return sb.toString();
-	}
+
 }
