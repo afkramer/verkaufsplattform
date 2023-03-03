@@ -183,6 +183,16 @@ public final class Gui {
         sc.nextLine();
     }
     
+    public static void showAvailableProducts(Product[] products) {
+		Gui.showProductsIntroduction();
+		int productNumber;
+		for (int i = 0; i < products.length; i++) {
+			productNumber = i + 1;
+			Gui.showAvailableProduct(productNumber, products[i]);
+		}
+		Gui.showProductsEnd();
+	}
+    
     public static void showProductsIntroduction() {
     	System.out.print(PURPLE_TEXT);
     	System.out.println("\n\n\n***************************************************");
@@ -212,17 +222,18 @@ public final class Gui {
     	System.out.print(ANSCI_RESET);
     }
     
-    public static Product getDesiredProduct() {
+    public static Product getDesiredProduct(Product[] products) {
     	System.out.print(BLUE_TEXT);
     	System.out.println("Which product would you like to buy?");
     	System.out.print(ANSCI_RESET);
     	int input;
-    	int productsLength = Utility.getProducts().length;
+    	int productsLength = products.length;
     	while (true) {
     		try {
     			input = Integer.parseInt(sc.nextLine());
     			if (input > 0 && input <= productsLength) {
-    				return Utility.getProductAt(input - 1);
+    				// Index starts at 0, customer input at 1
+    				return products[input - 1];
     			} else {
     				System.out.print(RED_TEXT);
                     System.out.println("\nPlease enter a number between 1 and " + productsLength + ".\n\n");
