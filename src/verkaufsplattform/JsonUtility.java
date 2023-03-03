@@ -25,6 +25,7 @@ public final class JsonUtility {
 			return mapper.readValue(jsonString, Customer.class);
 		} catch (JsonProcessingException e) {
 			System.out.println("Could not create customer from JSON string");
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -45,6 +46,7 @@ public final class JsonUtility {
 			return mapper.readValue(jsonString, Product.class);
 		} catch (JsonProcessingException e) {
 			System.out.println("Could not create product from JSON string.");
+			e.printStackTrace();
 			return null;
 		}
 	}

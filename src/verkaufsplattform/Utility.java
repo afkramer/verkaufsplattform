@@ -2,6 +2,7 @@ package verkaufsplattform;
 
 public final class Utility {
 	private static final int CUSTOMER_NUMBER_LENGTH = 6;
+	public static final double VALUE_ADDED_TAX = 0.19;
 	public static final String LOGIN_FLAG = "1";
 	public static final String REGISTER_FLAG = "2";
 	public static final String QUIT_FLAG = "q";

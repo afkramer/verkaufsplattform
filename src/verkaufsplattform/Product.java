@@ -5,17 +5,31 @@ public class Product {
 	private String productName;
 	private double productPrice;
 	private String productDescription;
-	private static final double valueAddedTax = 0.19;
 	private int desiredQuantity;
 	private double totalPrice;
 	private double includedTax;
 	
+	
+	
+	public Product(int productNumber, String productName, double productPrice, String productDescription,
+			int desiredQuantity, double totalPrice, double includedTax) {
+		this.productNumber = productNumber;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productDescription = productDescription;
+		this.desiredQuantity = desiredQuantity;
+		this.totalPrice = totalPrice;
+		this.includedTax = includedTax;
+	}
+
 	public Product(int productNumber, String productName, double productPrice, String productDescription) {
 		this.productNumber = productNumber;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.productDescription = productDescription;
 	}
+	
+	public Product() {}
 	
 	public void setDesiredQuantity(int quantity) {
 		desiredQuantity = quantity;
@@ -54,7 +68,7 @@ public class Product {
     }
 	
 	public void calculateVAT(){
-        includedTax = Math.round(totalPrice * valueAddedTax * 100) / 100.0;
+        includedTax = Math.round(totalPrice * Utility.VALUE_ADDED_TAX * 100) / 100.0;
     }
 	
 	

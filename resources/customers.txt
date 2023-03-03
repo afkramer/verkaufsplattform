@@ -1,0 +1,3 @@
+{"customerNumber":642431,"firstName":"Jennifer","lastName":"Fais","address":{"houseNumber":58,"street":"West 2nd Street","city":"Corning","state":"NY","zipCode":"14830"}}
+{"customerNumber":614154,"firstName":"Noel","lastName":"Sylvester","address":{"houseNumber":2525,"street":"County Route 24","city":"Cameron Mills","state":"NY","zipCode":"14820"}}
+{"customerNumber":434692,"firstName":"Amelia","lastName":"Cueva","address":{"houseNumber":170,"street":"Cedar Street","city":"Corning","state":"NY","zipCode":"14830"}}

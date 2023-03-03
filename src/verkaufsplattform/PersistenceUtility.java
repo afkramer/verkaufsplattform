@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 
 public final class PersistenceUtility {
 	
-	private static final String CUSTOMERS_FILE_PATH = "verkaufsplattform/resources/customers.txt";
-	private static final String PRODUCTS_FILE_PATH = "verkaufsplattform/resources/products.txt";
+	private static final String CUSTOMERS_FILE_PATH = "/Users/VPKRAMO/eclipse-workspace/verkaufsplattform/resources/customers.txt";
+	private static final String PRODUCTS_FILE_PATH = "/Users/VPKRAMO/eclipse-workspace/verkaufsplattform/resources/products.txt";
 	
 	private PersistenceUtility() {}
 		
@@ -23,6 +23,7 @@ public final class PersistenceUtility {
 			}
 		} catch (IOException e) {
 			System.out.println("Error in saving customers.");
+			e.printStackTrace();
 		}
 		
 	}
@@ -57,6 +58,7 @@ public final class PersistenceUtility {
 			}
 		} catch (IOException e) {
 			System.out.println("Error in saving products.");
+			e.printStackTrace();
 		}
 	}
 	
