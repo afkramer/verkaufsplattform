@@ -127,12 +127,19 @@ public final class Utility {
 	
 	
 	public static Customer[] addCustomer(Customer customer, Customer[] customers){
-        Customer[] newCustomers = new Customer[customers.length + 1];
-        for (int i = 0; i < customers.length; i++){
-            newCustomers[i] = customers[i];
+		Customer[] newCustomers;
+		if (customers == null) {
+        	newCustomers = new Customer[1];
+        	newCustomers[0] = customer;
+        } else {
+        	newCustomers = new Customer[customers.length + 1];
+            for (int i = 0; i < customers.length; i++){
+                newCustomers[i] = customers[i];
+            }
+            newCustomers[newCustomers.length - 1] = customer;
         }
-        newCustomers[newCustomers.length - 1] = customer;
-        return newCustomers;
+		
+		return newCustomers;
     }
 	
 	
