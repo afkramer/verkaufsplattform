@@ -70,7 +70,7 @@ public final class PersistenceUtility {
 				if(line == null) {
 					break;
 				} else {
-					product = JsonUtility.productFromJson(line);
+					product = JsonUtility.productFromJSON(line);
 					products = Utility.addProduct(product, products);
 				}
 			}

@@ -29,12 +29,22 @@ public final class JsonUtility {
 		}
 	}
 	
-	public Address addressFromJSON(String jsonString) {
+	public static Address addressFromJSON(String jsonString) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			return mapper.readValue(jsonString, Address.class);
 		} catch (JsonProcessingException e) {
 			System.out.println("Problem creating address from JSON!");
+			return null;
+		}
+	}
+	
+	public static Product productFromJSON(String jsonString) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.readValue(jsonString, Product.class);
+		} catch (JsonProcessingException e) {
+			System.out.println("Could not create product from JSON string.");
 			return null;
 		}
 	}
