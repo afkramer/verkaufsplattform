@@ -34,7 +34,9 @@ public final class PersistenceUtility {
 			String line;
 			while (true) {
 				line = reader.readLine();
-				if (line != null) {
+				if (line == null) {
+					break;
+				} else {
 					customer = JsonUtility.customerFromJSON(line);
 					customers = Utility.addCustomer(customer, customers);
 				}
@@ -56,5 +58,27 @@ public final class PersistenceUtility {
 		} catch (IOException e) {
 			System.out.println("Error in saving products.");
 		}
+	}
+	
+	public static Product[] createProductsFromFile() {
+		Product[] products = null;
+		try(BufferedReader reader = Files.newBufferedReader(Paths.get(PRODUCTS_FILE_PATH));){
+			Product product;
+			String line;
+			while(true) {
+				line = reader.readLine();
+				if(line == null) {
+					break;
+				} else {
+					product = JsonUtility.productFromJson(line);
+					products = Utility.addProduct(product, products);
+				}
+			}
+			
+		} catch (IOException e) {
+			System.out.println("Error in creating products from file.");
+		}
+		
+		return products;
 	}
 }
